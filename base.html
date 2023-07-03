@@ -1,0 +1,102 @@
+{% block head %}
+<title>Add student Details</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .form input[type="text"],
+    .form input[type="number"],
+    .form input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .form input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    .form input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Student DataBase</h1>
+    {% if tasks|length < 1 %}
+    <h4>Add your information!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>scholar_no</th>
+            <th>Branch</th>
+            <th>Year</th>
+            
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.scholar_no}}</td>
+                <td>{{ task.branch}}</td>
+                <td>{{ task.year }}</td>
+    
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <h4>Add a new student</h4>
+    <form class="form" method="POST" action="/">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="number" name="scholar_no" placeholder="scholar_no" required>
+        <input type="text" name="branch" placeholder="Branch">
+        <input type="number" name="year" placeholder="Year">
+        <input type="submit" value="Add Student">
+    </form>
+</div>
+{% endblock %}
